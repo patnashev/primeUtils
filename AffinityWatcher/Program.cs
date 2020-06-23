@@ -74,7 +74,7 @@ namespace AffinityWatcher
                         freeNodes.Add(i);
 
                     foreach (Process proc in Process.GetProcesses())
-                        if (proc.ProcessName.StartsWith("primegrid_cllr") || proc.ProcessName.StartsWith("cllr") || proc.ProcessName.StartsWith("llr2"))
+                        if (proc.ProcessName.StartsWith("primegrid_cllr") || proc.ProcessName.StartsWith("cllr") || proc.ProcessName.StartsWith("llr"))
                         {
                             long a = (long)proc.ProcessorAffinity;
                             int node = -1;
