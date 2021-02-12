@@ -24,7 +24,7 @@ namespace AffinityWatcher
 
             if (args.Length == 0 || args.Length == 1 || args.Length > 3)
             {
-                Console.WriteLine("Usage: AffinityWatcher Nodes Cores HT");
+                Console.WriteLine("Usage: AffinityWatcher Nodes Cores [HTmask=1,2,3]");
                 return;
             }
             else
@@ -52,7 +52,7 @@ namespace AffinityWatcher
             Console.WriteLine("Nodes: {0}, Cores: {1}{2}", nodes, coresPerNode, HT ? ", HT" : "");
 
             affs = new long[nodes];
-            affs[0] = HT ? 3 : 1;
+            affs[0] = HT ? HTmask : 1;
             for (i = 1; i < coresPerNode; i++)
             {
                 affs[0] <<= HT ? 2 : 1;
