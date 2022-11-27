@@ -74,7 +74,7 @@ namespace AffinityWatcher
                         freeNodes.Add(i);
 
                     foreach (Process proc in Process.GetProcesses())
-                        if (proc.ProcessName.StartsWith("primegrid_cllr") || proc.ProcessName.StartsWith("cllr") || (proc.ProcessName.StartsWith("llr") && proc.ProcessName.IndexOf("wrapper") < 0) || (proc.ProcessName.StartsWith("prst") && proc.ProcessName.IndexOf("wrapper") < 0) || (proc.ProcessName.StartsWith("genefer22") && !proc.ProcessName.StartsWith("genefer22g")))
+                        if (proc.ProcessName.StartsWith("primegrid_cllr") || proc.ProcessName.StartsWith("cllr") || (proc.ProcessName.StartsWith("llr") && proc.ProcessName.IndexOf("wrapper") < 0) || (proc.ProcessName.StartsWith("prst") && proc.ProcessName.IndexOf("wrapper") < 0) || proc.ProcessName.StartsWith("genefer_") || proc.ProcessName.StartsWith("genefer22_"))
                         {
                             long a = (long)proc.ProcessorAffinity;
                             int node = -1;
@@ -98,7 +98,7 @@ namespace AffinityWatcher
                             break;
                         int node = freeNodes[0];
                         freeNodes.RemoveAt(0);
-                        Console.WriteLine("Binding process {0} to node {1}.", proc.Id, node);
+                        Console.WriteLine("Binding process {0} {1} to node {2}.", proc.Id, proc.ProcessName, node);
                         proc.ProcessorAffinity = (IntPtr)affs[node];
                     }
 
